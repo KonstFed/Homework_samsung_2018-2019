@@ -9,24 +9,19 @@ def find_start(ship):
                 mas=[j,i]
                 return mas
 n,m=input().split()
-
-n=int(n)
-m=int(m)
-fin = []
-ship=[]
 record = 100000000
-cost = []
-time=0
-
-ship = []
-for c in range(n):
-    row = []
-    for q in range(m):
-        row.append(10000)
-    cost.append(row)
-for i in range(n):
-    row = input().split("")
-    ship.append(row)
+def begin(ship,n,m):
+    global cost
+    for i in range(n):
+        row = str(input())
+        row1=[]
+        row2 = []
+        for j in row:
+            row1+=[j]
+            row2.append(1000)
+        ship.append(row1)
+        cost.append(row2)
+    return(ship)
 
 
 def find_finish(ship):
@@ -35,12 +30,6 @@ def find_finish(ship):
             if ship[i][j]=='f':
                 mas = [j,i]
                 return mas
-
- 
-
-direction='down'
-
-
 def add_new_point(new_point,front,fin):
     global ship,cost,record
     if ship[new_point["y"]][new_point["x"]] == "#":
@@ -55,23 +44,25 @@ def add_new_point(new_point,front,fin):
         front.append(new_point)
     if cost[new_point["y"]][new_point["x"]]>new_point["time"]:
         cost[new_point["y"]][new_point["x"]]=new_point["time"]
-    
 
+    
 def main(width, heigth):
-    global ship
+    global ship,cnt
+    begin(ship,n,m)
+    cnt =0
     front = []
-    record = 100000000
     fin = find_finish(ship)
     s = find_start(ship)
     start={
         "x":s[0],
-        "y":s[0],
+        "y":s[1],
         "time":0,
         "dir":"down"
     }
     front.append(start)
     while len(front) != 0:
         current = front[0]
+        cnt+=1
         del(front[0])
         if current["x"] > 0 and current["dir"]!="right":
             if current["dir"] == "left":
@@ -125,6 +116,13 @@ def main(width, heigth):
                 "dir":"down"
             }
             add_new_point(new_point,front,fin)
+n=int(n)
+m=int(m)
+fin = []
+ship=[]
+cost = []
+time=0
+ship = []
 main(m,n)
 if (record == 100000000 ):
     print(-1)
