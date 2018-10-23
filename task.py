@@ -31,7 +31,7 @@ def Find_point(distanse, rotation, x1, y1, direct):
         x2 =cenx + radius * math.cos(new_angle)
         y2 =ceny + radius * math.sin(new_angle)
     return [x2,y2]
-def way (x1,y1,x2,y2):
+def way (x1,y1,x2,y2): #Здесь не обязательно брать значения по модулю, так как всё равно происходит возведение в квадрат.(Гриша)
     x1 = abs(x1)
     y1 = abs(y1)
     x1 = abs(x1)
